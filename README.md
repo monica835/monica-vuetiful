@@ -1,4 +1,4 @@
-# monica-vuetiful
+# tutorial
 
 ## Project setup
 ```
