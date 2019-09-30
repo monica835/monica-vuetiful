@@ -159,7 +159,8 @@ export default {
             e.preventDefault();
             sessionStorage.setItem("username", this.input.username)
             sessionStorage.setItem("password", this.input.password)
-            AUTH.register(this.input.username, this.input.password)
+            sessionStorage.setItem("confirmpassword",this.input.confirmpassword)
+            AUTH.register(this.input.username, this.input.password,this.input.confirmpassword)
         }
     }
 }

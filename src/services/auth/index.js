@@ -13,7 +13,7 @@ export default{
             username: username,
             password:password
         })
-        Router.push('/login')
+        Router.push('/Login')
     },
     login(username,password){
         for(let i=0;i<this.registeredUser.length;i++){
@@ -27,6 +27,15 @@ export default{
     logout(){
         this.user=null
         Router.push('/login')
+    },
+    update(){
+        this.user = null
+        Router.push('/EditProfile')
+    },
+    save(){
+        this.user = null
+        Router.push('/Profile')
     }
+
 
 }

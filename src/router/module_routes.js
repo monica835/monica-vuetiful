@@ -1,12 +1,18 @@
-// import AUTH from '../services/auth'
+import AUTH from '../services/auth'
 let beforeEnter = (to, from, next) => {
-    // AUTH.currentPath = to.path
-    //  if (to.meta.tokenREquired === true) {
-          
-       next()
-    // } else {
-    //     next({ path: '/' })
-    // }
+    AUTH.currentPath = to.path
+    
+    if (sessionStorage.getItem("Password") != null) {
+        if (to.path === '/' || to.path === '/') {
+            next({ path: '/login' })
+        } else if (to.meta.tokenRequired === true) {
+            next({ path: '/' })
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
 }
 var devroutes = []
 let app = require('router/app.js')
@@ -16,17 +22,17 @@ for (let x = 0; x < devroutes.length; x++) {
 }
 let routes = [
     {
-    //     path: '/',
-    //     name: 'Header',
-    //     component: resolve => require([''], resolve),
-    //     beforeEnter:  beforeEnter
-    // },
-    // {
-    path: '/',
-    name: 'login',
-    component: resolve => require(['components/Login.vue'], resolve),
-    beforeEnter:  beforeEnter
-    } 
+        //     path: '/',
+        //     name: 'Header',
+        //     component: resolve => require([''], resolve),
+        //     beforeEnter:  beforeEnter
+        // },
+        // {
+        path: '/',
+        name: 'login',
+        component: resolve => require(['components/Login.vue'], resolve),
+        beforeEnter: beforeEnter
+    }
 ]
 routes = routes.concat(devroutes)
 export default {

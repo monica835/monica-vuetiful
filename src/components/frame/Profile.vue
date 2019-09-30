@@ -1,40 +1,68 @@
 <template>
-<div id="app">
-  <h1>Profile settings</h1>
-  <label for="user-name">Full name</label>
-  <div class="field">
-    <span class="field-value" v-show="!showField('name')" @click="focusField('name')">{{user.name}}</span>
-    <input v-model="user.name" v-show="showField('name')" id="user-name" type="text" class="field-value form-control" @focus="focusField('name')" @blur="blurField">
+  <div id="container">
+  <SideBar></SideBar>
+    <div class="jumbotron">
+      <h1>Personal Information</h1>
+    </div>
+    <div id="card">
+      <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+        <b-row no-gutters>
+          <b-col md="6">
+            <b-card-img :src="require('assets/user.jpg')" class="rounded-0"></b-card-img>
+          </b-col>
+          <b-col md="6">
+            <b-card-body title="Personal Info">
+                <hr>
+              <b-card-text>
+                <h6>Username: {{username}}</h6>
+                 <h6 type="password">Password: {{password}}</h6>
+                <h6 type="password">Confirm Password: {{confirmpassword}}</h6>
+              </b-card-text>
+              <button @click='update' class="btn login_btn" >Update</button>
+            </b-card-body>
+          </b-col>
+        </b-row>
+      </b-card>
+    </div>
   </div>
-  
-  <label for="user-email">Email address</label>
-  <div class="field">
-    <span class="field-value" v-show="!showField('email')" @click="focusField('email')">{{user.email}}</span>
-    <input v-model="user.email" v-show="showField('email')" type="email" class="field-value form-control" @focus="focusField('email')" @blur="blurField">
-  </div>
-</div>
 </template>
+<style>
+.jumbotron{
+    padding: 20px;
+    text-align: center;
+    background-color:lightblue;
+}
+#card {
+  margin-top: 50px;
+  margin-left: 380px;
+}
+.login_btn{
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+}
+</style>
 <script>
+import AUTH from 'services/auth'
+import SideBar from 'components/frame/SideBar.vue'
 export default {
-        data(){
-    return {
-      user : {
-        name: '',
-        email: ''
-      },
-      editField : ''
-    }
+  components:{
+    SideBar
   },
-  methods : {
-    focusField(name){
-      this.editField = name;
-    },
-    blurField(){
-      this.editField = '';
-    },
-    showField(name){
-      return (this.user[name] == '' || this.editField == name)
+  name: "container",
+  data() {
+    return {
+      username: sessionStorage.getItem("username"),
+      password: sessionStorage.getItem("password"),
+      confirmpassword: sessionStorage.getItem("confirmpassword")
+    };
+  },
+  methods:{
+    update: function(){
+      // e.preventDefault();
+      AUTH.update(this.username,this.password, this.confirmpassword)
+      // AUTH.update()
     }
   }
-}
+};
 </script>

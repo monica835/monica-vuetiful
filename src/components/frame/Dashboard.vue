@@ -37,7 +37,6 @@
 </style>
 
 <script>
-import ROUTER from "router";
 import SideBar from 'components/frame/SideBar.vue'
 export default {
   components: {

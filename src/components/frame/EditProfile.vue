@@ -3,48 +3,60 @@
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3>Member Login</h3>
-                <div class="d-flex justify-content-end social_icon">
-                    <span><i class="fab fa-facebook-square"></i></span>
-                    <span><i class="fab fa-google-plus-square"></i></span>
-                    <span><i class="fab fa-twitter-square"></i></span>
-                </div>
+                <h3>UPDATE INFO</h3>
             </div>
             <div class="card-body">
-                <form @submit="onsubmit">
+                <form >
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="username" name="username" v-model="input.username" required>
-
+                        <input type="text" class="form-control" placeholder="username" name="username" v-model="username" >
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="password" name="password" v-model="input.password" required>
+                        <input type="password" class="form-control" name="password" placeholder="password" v-model="password" r>
                     </div>
-                    <div class="row align-items-center remember">
-                        <input type="checkbox">Remember Me
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" name="confirmpassword" placeholder="confirm password" v-model="confirmpassword" >
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn float-right login_btn">Submit</button>
+                        <input type="submit" value="Submit" @click="save" class="btn float-right login_btn" >
                     </div>
                 </form>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="login#/Register">Sign Up</a>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="#">Forgot your password?</a>
-                </div>
             </div>
         </div>
     </div>
 </div>
 </template>
+<script>
+import AUTH from 'services/auth'
+export default {
+  data() {
+    AUTH
+    return {
+      username: "",
+      password: "",
+      confirmpassword: ""
+    };
+  },
+  methods: {
+    save: function(e) {
+      e.preventDefault();
+      sessionStorage.setItem("username", this.username),
+      sessionStorage.setItem("password", this.password),
+      sessionStorage.setItem("confrirmpassword", this.confirmpassword),
+      AUTH.save(this.username,this.password, this.confirmpassword)
+    // }
+  },
+}
+};
+</script>
 
 <style scoped>
 html,
@@ -52,7 +64,7 @@ body {
     background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%;
+    height: auto;
     font-family: 'Numans', sans-serif;
 }
 
@@ -63,7 +75,7 @@ body {
 }
 
 .card {
-    height: 370px;
+    height: 400px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
@@ -134,28 +146,3 @@ input:focus {
     margin-left: 4px;
 }
 </style>
-
-<script>
-import AUTH from 'services/auth'
-export default {
-    name: 'Login',
-    auth: AUTH,   
-    data() {
-        return {
-            input: {
-                username: "",
-                password: ""
-            }
-        }
-    },
-    methods: {
-        Signup() {
-            window.location.href = '/Register#/Register';
-        },
-        onsubmit(e) {
-            e.preventDefault();
-            AUTH.login(this.input.username, this.input.password)
-        },
-    }
-};
-</script>

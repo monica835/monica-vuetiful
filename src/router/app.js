@@ -21,7 +21,7 @@ export default {
         name: 'profile',
         component: resolve => require(['components/frame/Profile.vue'], resolve),
         meta: {
-            tokenRequired: false
+            tokenRequired: true
         }
     },
     {
@@ -29,15 +29,23 @@ export default {
         name: 'subjects',
         component: resolve => require(['components/frame/Subjects.vue'], resolve),
         meta: {
-            tokenRequired: false
+            tokenRequired: true
         }
     },
     {
-        path: '/sidebar',
-        name: 'sidebar',
-        component: resolve => require(['components/frame/SideBar.vue'], resolve),
+        path: '/profile',
+        name: 'profile',
+        component: resolve => require(['components/frame/Profile.vue'], resolve),
         meta: {
-            tokenRequired: false
+            tokenRequired: true
+        }
+    },
+    {
+        path: '/editprofile',
+        name: 'editprofile',
+        component: resolve => require(['components/frame/EditProfile.vue'], resolve),
+        meta: {
+            tokenRequired: true
         }
     },
     {
@@ -45,9 +53,10 @@ export default {
         name: 'dashboard',
         component: resolve => require(['components/frame/Dashboard.vue'], resolve),
         meta: {
-            tokenRequired: false
+            tokenRequired: true
         }
     },
+    
     ]
 
 }
