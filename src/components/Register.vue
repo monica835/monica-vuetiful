@@ -34,7 +34,7 @@
                         <input type="checkbox">Remember Me
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Submit" class="btn float-right login_btn" >
+                        <input type="submit" value="Submit" class="btn float-right login_btn"  @click=" register()">
                     </div>
                 </form>
             </div>
@@ -142,6 +142,7 @@ input:focus {
 
 <script>
 import AUTH from 'services/auth'
+import jquery from 'jquery'
 export default {
     name: 'register',
 	auth:AUTH,
@@ -162,6 +163,18 @@ export default {
             sessionStorage.setItem("confirmpassword",this.input.confirmpassword)
             AUTH.register(this.input.username, this.input.password,this.input.confirmpassword)
         }
-    }
+    },
+    register(){
+        let link=(`http://localhost:3000/db/create/${this.input.username}/${this.inut.password}`,
+        jquery.ajax({
+            url:kink,
+            method:'GET',
+            headers:{
+                'Access-Control-Allow-Origin':'*'
+            }
+        }).then(response=>{
+            alert(response.username)
+        })
+        )}
 }
 </script>

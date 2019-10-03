@@ -10,12 +10,7 @@
     </b-navbar>
   </div>
 </template>
-<style scoped lang="scss">
-    @import '~assets/styles.scss';
-    #title{
-      color:$primary !important;
-      color: #FFC312;
-    }
+<style scoped >
 </style>
 <script>
 import AUTH from 'services/auth'
