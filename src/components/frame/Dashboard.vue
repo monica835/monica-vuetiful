@@ -24,11 +24,13 @@
 #card {
   margin-top: 30px;
   margin-left: 400px;
+  margin-right:400px;
+  box-shadow: 10px 10px 5px grey; 
 }
 .jumbotron{
     padding:20px;
     text-align: center;
-    background-color:lightblue;
+    background-color:grey;
 }
 #image {
   width: 250px;

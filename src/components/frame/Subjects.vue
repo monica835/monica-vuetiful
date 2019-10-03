@@ -83,10 +83,15 @@ export default {
         subjects: this.input.subjects,
         room: this.input.room
       };
+      if(this.input.course ==="" || this.input.subjects===""||this.input.room===""){
+        alert("please provide an input")
+      }
+      else{
       this.rows.push( object )
       this.input.course = ""
       this.input.subjects = ""
       this.input.room = ""
+      }
     }
   }
 };

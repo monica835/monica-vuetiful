@@ -1,5 +1,5 @@
 <template>
-  <sidebar-menu :menu="menu" />
+   <sidebar-menu :menu="menu" />
 </template>
  
 <script>
@@ -11,6 +11,7 @@
                         header: true,
                         title: 'KAT-ON PAGE',
                         hiddenOnCollapse: true
+                        
                     },
                     {
                         href: '/dashboard',

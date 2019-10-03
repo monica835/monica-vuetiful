@@ -154,7 +154,15 @@ export default {
         },
         onsubmit(e) {
             e.preventDefault();
-            AUTH.login(this.input.username, this.input.password)
+            let user=AUTH.login(this.input.username, this.input.password);
+            if(this.input.username===""||this.input.password===""){
+                alert("please provide an inputs");
+            }else{
+                AUTH.setUser(user);
+                if(user!==null){
+                    Router.push('/dashboard');
+                }
+            }
         },
     }
 };

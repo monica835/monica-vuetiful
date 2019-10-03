@@ -1,7 +1,7 @@
 import Router from 'router'
 export default{
-    user : null,
-    registeredUser:[],
+    user: null,
+    registeredUser: [],
     setUser(user){
         this.user=user
     },
